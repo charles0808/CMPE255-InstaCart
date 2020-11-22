@@ -149,7 +149,7 @@ def rfc(filepath):
     for index, row in pred_user.iterrows():
         temp = []
         for i in row[0]:
-            temp.append(products[products['product_id'] == i]['product_name'])
+            temp.append(products[products['product_id'] == i]['product_name'].array[0])
         result[row['user_id']] = temp
 
     return result
@@ -201,5 +201,19 @@ def returnRecommandItem(filepath, customercluster):
 
 
 if __name__ == "__main__":
-    cluster = customerSegmentation(sys.argv[1])
-    print(returnRecommandItem(sys.argv[1], cluster))
+    cluster = customerSegmentation('Sample Data')
+    association_result = returnRecommandItem('Sample Data', cluster)
+    rfc_result = rfc('Sample Data')
+
+    print("========= K-Means clustering result first 10 =========")
+    print(cluster.head(10))
+    print()
+    print("========= Association rule result first 10 =========")
+    for key in list(association_result)[:10]:
+        print("user id: " , key, "--->", association_result[key])
+    print()
+    print("========= Random Forest Classifier Reorder result first 10 =========")
+    for key in list(rfc_result)[:10]:
+        print("user id: " , key, "--->", rfc_result[key])
+        
+    
