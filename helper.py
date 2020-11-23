@@ -10,6 +10,7 @@ import time
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori, fpmax, fpgrowth
 from mlxtend.frequent_patterns import association_rules
+import csv
 
 def customerSegmentation(filepath):
     # Part1: read in raw data with provided filepah
@@ -215,5 +216,15 @@ if __name__ == "__main__":
     print("========= Random Forest Classifier Reorder result first 10 =========")
     for key in list(rfc_result)[:10]:
         print("user id: " , key, "--->", rfc_result[key])
-        
-    
+
+    with open('association_rule_output.csv', 'w') as csvfile:
+        writer = csv.writer(csvfile)
+        for key, value in association_result.items():
+           p_list = ', '.join(map(str, value))
+           writer.writerow([key, p_list])
+
+    with open('rfc_output.csv', 'w') as csvfile:
+        writer = csv.writer(csvfile)
+        for key, value in rfc_result.items():
+           p_list = ', '.join(map(str, value))
+           writer.writerow([key, p_list])
