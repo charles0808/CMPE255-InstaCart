@@ -202,9 +202,10 @@ def returnRecommandItem(filepath, customercluster):
 
 
 if __name__ == "__main__":
-    cluster = customerSegmentation('Sample Data')
-    association_result = returnRecommandItem('Sample Data', cluster)
-    rfc_result = rfc('Sample Data')
+    folder_name = sys.argv[1]
+    cluster = customerSegmentation(folder_name)
+    association_result = returnRecommandItem(folder_name, cluster)
+    rfc_result = rfc(folder_name)
 
     print("========= K-Means clustering result first 10 =========")
     print(cluster.head(10))
