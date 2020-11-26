@@ -156,7 +156,7 @@ def rfc(filepath):
     return result
 
 def returnRecommandItem(filepath, customercluster):
-    apriori_output = pd.read_csv(filepath + 'model/output_Aprioir.csv')
+    apriori_output = pd.read_csv('model/output_Aprioir.csv')
     apriori_output = apriori_output[['first','second','label']]
     
     # read sample data
