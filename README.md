@@ -10,3 +10,19 @@ For consumer segmentation, individual products will be first grouped together in
 It is expected that along with data preprocessing and additional understanding of the full data set, some of the methodologies/models might change.
 
 For measurement metric, we will use precision, recall, f1-score to evaluate the model.
+
+#### Usage
+
+To see partial result from the model, use the following script in root directory
+
+```
+python helper.py <Sample Data folder name>
+```
+
+To use the sample data provided, run script
+
+```
+python helper.py Sample
+```
+
+The full output will be in the file association_rule_output.csv and rfc_output.csv
