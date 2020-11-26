@@ -26,3 +26,7 @@ python helper.py Sample
 ```
 
 The full output will be in the file association_rule_output.csv and rfc_output.csv
+
+#### File structure
+
+All Jupyter notebook file that are used generate the model are place under directory **src**

@@ -69,7 +69,7 @@ def customerSegmentation(filepath):
     pca_34_90percent = pd.DataFrame(pca_34)
                                                                                                      
     # load the model from disk and predict on the data
-    filename = 'customer_segmentation_model.sav'
+    filename = 'model/customer_segmentation_model.sav'
     loaded_model = pickle.load(open(filename, 'rb'))
     y_kmean = loaded_model.predict(pca_34_90percent)
     result = pca_34_90percent.copy(deep=True)
@@ -139,7 +139,7 @@ def rfc(filepath):
         data = data.set_index(['user_id', 'product_id'])
         return data
 
-    rfc_model = pickle.load(open('rfc_model.sav', 'rb'))
+    rfc_model = pickle.load(open('model/rfc_model.sav', 'rb'))
     data = preprocess()
     pred = (rfc_model.predict_proba(data)[:,1] >= 0.30).astype(int)
     data['pred_reorder'] = pred
@@ -156,7 +156,7 @@ def rfc(filepath):
     return result
 
 def returnRecommandItem(filepath, customercluster):
-    apriori_output = pd.read_csv(filepath + '/output_Aprioir.csv')
+    apriori_output = pd.read_csv(filepath + 'model/output_Aprioir.csv')
     apriori_output = apriori_output[['first','second','label']]
     
     # read sample data
